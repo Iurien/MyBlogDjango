@@ -13,7 +13,7 @@ git clone https://github.com/devmahmud/DjangoBlog.git
 
 #### или просто скачайте по ссылке ниже
 ```
-https://github.com/devmahmud/DjangoBlog.git
+https://github.com/Iurien/MyBlogDjango.git
 ```
 
 ## Требования
@@ -24,7 +24,6 @@ https://github.com/devmahmud/DjangoBlog.git
 pip install -r requirements.txt
 ```
 
-### В этом проекте я использовал PostgreSQL в качестве базы данных. Измените информацию о базе данных в настройках на информацию о вашей базе данных.
 ## Для миграции базы данных откройте терминал в каталоге проекта и введите:
 ```
 python manage.py makemigrations
@@ -74,24 +73,11 @@ python manage.py test && flake8
 ```
 или вы можете просто запустить `flake8`
 
-## Снимок проекта
-
-### Домашняя страница
-![image](https://user-images.githubusercontent.com/19981097/81924503-08809680-9601-11ea-9df2-2096f265b0e1.png)
-
-### Подробности Страница
-![image](https://user-images.githubusercontent.com/19981097/81924659-37970800-9601-11ea-8433-8b21e75594b1.png)
-
-### Страница комментариев
-![image](https://user-images.githubusercontent.com/19981097/81924734-51d0e600-9601-11ea-9df9-14b9c47c11ac.png)
-
-### Поделиться записью страница
-![image](https://user-images.githubusercontent.com/19981097/81926022-2a7b1880-9603-11ea-9cd6-3f465389f250.png)
 
 ## Автор
 ```
-Махмудул Алам
-Email: expelmahmud@gmail.com
+Daraban Iurie
+Email: jdiuran@gmail.com
 ```
 
 <div align="center">
