@@ -19,6 +19,10 @@ https://github.com/Iurien/MyBlogDjango.git
 ## Требования
 ```
 Создайте виртуальное окружение и активируйте его.
+
+py -m venv .venv -  Установка  виртуальной среды
+.\.venv\Scripts\activate  – Активация виртуальной среды
+
 и установите необходимые зависимости, введя:
 
 pip install -r requirements.txt
@@ -50,8 +54,9 @@ python manage.py seed --posts number_of_post
 ```
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
+EMAIL_PORT = 587 # (для TLS/STARTTLS) или 465 (для SSL)
 EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 EMAIL_HOST_USER = 'ваш email'
 EMAIL_HOST_PASSWORD = 'пароль вашего email'
 ```
