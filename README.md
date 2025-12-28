@@ -8,7 +8,7 @@
 ## Установка
 ```
 Откройте терминал и введите
-git clone https://github.com/devmahmud/DjangoBlog.git
+git clone https://github.com/Iurien/MyBlogDjango.git
 ```
 
 #### или просто скачайте по ссылке ниже
