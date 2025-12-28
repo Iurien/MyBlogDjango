@@ -10,7 +10,7 @@ from taggit.models import Tag
 
 from .models import Post, Comment
 from .forms import CommentForm, EmailPostForm
-
+from django.http import HttpResponse
 
 class PostListView(ListView):
     paginate_by = 10
@@ -124,5 +124,9 @@ class ContactView(FormView):
     form_class = EmailPostForm
     template_name = 'blog/contact.html'
 
+
+def sample_view(request):
+    html = '<body><h1>Django sample_view</h1><br><p>Отладка sample_view</p></body>'
+    return HttpResponse(html)
 
 

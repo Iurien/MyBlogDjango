@@ -7,6 +7,7 @@ from .views import (
 )
 from .feeds import LatestPostsFeed
 
+
 app_name = 'blog'
 
 urlpatterns = [
@@ -20,3 +21,4 @@ urlpatterns = [
     path('about/', AboutView.as_view(), name='about'),
     path('contact/', ContactView.as_view(), name='contact'),
 ]
+

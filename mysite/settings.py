@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'django.contrib.sites',
     'django.contrib.sitemaps',
-    'blog',
-    'taggit'
+    'blog.apps.BlogConfig',
+    'taggit',
+    'debug_toolbar',
 ]
 
 SITE_ID = 1
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -134,3 +136,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
