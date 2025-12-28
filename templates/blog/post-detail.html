@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+
+{% block content %}
+ <!-- Содержимое страницы -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Колонка с содержимым публикации -->
+      <div class="col-lg-8">
+
+        <!-- Заголовок -->
+        <h1 class="mt-4">{{ object.title }}</h1>
+
+        <!-- Автор -->
+        <p class="lead">Автор {{ object.author }}</p>
+
+        <hr>
+
+        <!-- Дата/Время -->
+        <p>Опубликовано на {{ object.publish }}</p>
+
+        <hr>
+
+        <!-- Предварительный просмотр изображения -->
+        <img class="img-fluid rounded" src="{{ object.image.url }}" alt="">
+
+        <hr>
+          {{ object.body }}
+        <hr>
+        <a href="{% url 'blog:post_share' object.id %}" class="btn btn-info mb-3">Поделитесь этим постом</a>
+
+        <h3 class="bg-primary p-2 text-white mb-3">Похожие публикации</h3>
+        <div class="row">
+          {% for post in similar_posts %}
+            <div class="col-md-4">
+              <div class="card" style="width: 200px">
+                <div class="card-image-top">
+                  <img src="{{ object.image.url}}" alt="" class="img-fluid">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                  </h5>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            Пока нет похожих сообщений.
+          {% endfor %}
+        </div>
+
+        <!-- Форма для комментариев -->
+        <div class="card my-4">
+          <h5 class="card-header">Оставьте комментарий:</h5>
+          <div class="card-body">
+            <form action="{{ object.get_absolute_url }}" method="ПУБЛИКАЦИИ>
+            
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="name">{{ form.name.label_tag }}</label>
+                <input type="text" class="form-control {% if form.name.errors %}is-invalid{% endif %}" name="Имя"
+                id="id_name" placeholder="Your name" value="{{ form.name.value|default:""}}">
+                {% if form.name.errors %}
+                  <div class="invalid-feedback">
+                    {{ form.name.errors }}
+                  </div>
+                {% endif %}
+              </div>
+              
+              <div class="form-group">
+                <label for="email">{{ form.email.label_tag }}</label>
+                <input type="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}" name="email" id="идентификатор электронной почты"
+                placeholder="Ваш электронный адрес" value="{{ form.email.value|default:""}}">
+                {% if form.email.errors %}
+                  <div class="invalid-feedback">
+                    {{ form.email.errors }}
+                  </div>
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{form.body.label_tag}}
+                <textarea name="body" id="id_body" class="form-control {% if form.body.errors %}is-invalid{% endif %}" rows="3" 
+                placeholder="Что вы хотите сказать?">{{ form.body.value|default:""}}</textarea>
+                 <div class="invalid-feedback">
+                    {{ form.body.errors }}
+                  </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Отправить</button>
+            </form>
+          </div>
+        </div>
+
+        {% with comments.count as total_comments %}
+          <h3 class="bg-primary p-2 text-white mb-3">
+            {{ total_comments }} comment{{ total_comments|pluralize }}
+          </h3>
+        {% endwith %}
+
+        {% for comment in comments %}
+        <!-- Отдельный комментарий -->
+        <div class="media mb-4">
+          <div class="media-body">
+            <h5 class="mt-0"> Комментарий {{ forloop.counter }} от <span class="text-secondary">{{ comment.name }}</span> {{ comment.created }}</h5>
+             {{ comment.body|linebreaks }}
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+      
+      <!-- Столбец виджетов боковой панели-->
+      <div class="col-md-4">
+
+        {% include 'partials/_search.html' %}
+
+        {% show_latest_posts 5 %}
+
+        <!-- Боковой виджет -->
+        <div class="card my-4">
+          <h5 class="card-header">Самый комментируемый пост</h5>
+          <div class="card-body">
+           {% get_most_commented_posts as most_commented_posts %}
+            <ul class="list-unstyled">
+              {% for post in most_commented_posts %}
+                <li>
+                  <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+{% endblock content %}

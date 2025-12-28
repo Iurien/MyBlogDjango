@@ -1,0 +1,14 @@
+<!-- Виджет поиска -->
+<div class="card my-4">
+    <h5 class="card-header">Поиск</h5>
+    <div class="card-body">
+        <form action="{% url 'blog:post_list' %}" method="get">
+            <div class="input-group">
+                <input type="search" class="form-control" name="query" placeholder="Искать...">
+                <span class="input-group-btn">
+                <button class="btn btn-secondary" type="submit">Нажать!</button>
+            </span>
+        </div>
+        </form>
+    </div>
+</div>
