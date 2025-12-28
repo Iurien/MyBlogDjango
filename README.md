@@ -69,7 +69,7 @@ python manage.py test
 
 ## Для тестирования проекта и руководства по стилю PEP8
 ```
-python manage.py test && flake8
+python manage.py test -and flake8
 ```
 или вы можете просто запустить `flake8`
 
